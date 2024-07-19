@@ -10,9 +10,10 @@ import (
 
 func main() {
 	ctx := context.Background()
-	ctx, err := signal.NotifyContext(ctx, os.Interrupt, os.Kill, syscall.SIGTERM, syscall.SIGKILL)
+	ctx, cancel := signal.NotifyContext(ctx, os.Interrupt, os.Kill, syscall.SIGTERM, syscall.SIGKILL)
+	defer cancel()
 
-	if err := run(); err != nil {
+	if err := run(ctx); err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)
 	}
@@ -20,4 +21,8 @@ func main() {
 }
 
 func run(ctx context.Context) error {
+	select {
+	case <-ctx.Done():
+		return nil
+	}
 }
