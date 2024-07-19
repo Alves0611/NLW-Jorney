@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/jackc/pgx/v5/pgxpool"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -33,8 +34,19 @@ func run(ctx context.Context) error {
 	}
 
 	logger = logger.Named("journey_app")
-	defer logger.Sync()
-
+	defer func() { _ = logger.Sync }()
+	pool, err := pgxpool.New(ctx, fmt.Sprintf(
+		"user=%s password=%s host=%s port=%s dbname=%s",
+		os.Getenv("JOURNEY_DATABASE_USER"),
+		os.Getenv("JOURNEY_DATABASE_PASSWORD"),
+		os.Getenv("JOURNEY_DATABASE_HOST"),
+		os.Getenv("JOURNEY_DATABASE_PORT"),
+		os.Getenv("JOURNEY_DATABASE_NAME"),
+	))
+	if err != nil {
+		return err
+	}
+	defer pool.Close()
 	select {
 	case <-ctx.Done():
 		return nil
