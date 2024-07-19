@@ -6,6 +6,9 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 func main() {
@@ -21,6 +24,17 @@ func main() {
 }
 
 func run(ctx context.Context) error {
+	cfg := zap.NewDevelopmentConfig()
+	cfg.EncoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
+
+	logger, err := cfg.Build()
+	if err != nil {
+		return err
+	}
+
+	logger = logger.Named("journey_app")
+	defer logger.Sync()
+
 	select {
 	case <-ctx.Done():
 		return nil
