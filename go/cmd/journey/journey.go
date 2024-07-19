@@ -3,9 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
+	"journey/internal/api"
+	"journey/internal/api/spec"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -56,6 +60,31 @@ func run(ctx context.Context) error {
 	}
 	r := chi.NewMux()
 	r.Use(middleware.RequestID, middleware.Recoverer, httputils.ChiLogger(logger))
+	si := api.NewApi(
+		pool,
+		logger,
+		mailpit.NewMailPit(pool),
+	)
+
+	r.Mount("/", spec.Handler(&si))
+
+	srv := &http.Server{
+		Addr:         ":8080",
+		Handler:      r,
+		IdleTimeout:  time.Minute,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 5 * time.Second,
+	}
+
+	defer func() {
+		const timeout = 30 * time.Second
+		ctx, cancel := context.WithTimeout(context.Background(), timeout)
+		defer cancel()
+
+		if err := srv.Shutdown(ctx); err != nil {
+			logger.Error("failed to shutdown server", zap.Error(err))
+		}
+	}()
 
 	select {
 	case <-ctx.Done():
