@@ -1,6 +1,5 @@
 -- name: InsertTrip :one
-INSERT
-INTO trips
+INSERT INTO trips
     ( "destination", "owner_email", "owner_name", "starts_at", "ends_at") VALUES
     ( $1, $2, $3, $4, $5 )
 RETURNING "id";
@@ -36,7 +35,6 @@ FROM participants
 WHERE
     id = $1;
 
-
 -- name: GetParticipants :many
 SELECT
     "id", "trip_id", "email", "is_confirmed"
@@ -44,7 +42,7 @@ FROM participants
 WHERE
     trip_id = $1;
 
--- name: InviteParticipantsToTrip :copyfrom
+-- name: InviteParticipantsToTrip :exec
 INSERT INTO participants
     ( "trip_id", "email" ) VALUES
     ( $1, $2 );
