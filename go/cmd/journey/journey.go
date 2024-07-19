@@ -7,7 +7,10 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/phenpessoa/gutils/netutils/httputils"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -47,6 +50,13 @@ func run(ctx context.Context) error {
 		return err
 	}
 	defer pool.Close()
+
+	if err := pool.Ping(ctx); err != nil {
+		return err
+	}
+	r := chi.NewMux()
+	r.Use(middleware.RequestID, middleware.Recoverer, httputils.ChiLogger(logger))
+
 	select {
 	case <-ctx.Done():
 		return nil
