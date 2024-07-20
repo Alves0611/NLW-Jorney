@@ -1,21 +1,18 @@
-module journey
+module github.com/rocketseat-education/nlw-journey-go
 
-go 1.22.5
+go 1.22.2
 
 require (
 	github.com/discord-gophers/goapi-gen v0.3.0
 	github.com/getkin/kin-openapi v0.126.0
+	github.com/go-chi/chi v1.5.5
 	github.com/go-chi/chi/v5 v5.1.0
 	github.com/go-chi/render v1.0.3
-)
-
-require (
-	github.com/go-chi/chi v1.5.5
 	github.com/go-playground/validator/v10 v10.22.0
 	github.com/google/uuid v1.6.0
 	github.com/jackc/pgx/v5 v5.6.0
 	github.com/phenpessoa/gutils v0.0.0-20240130030144-d391b9329afd
-	github.com/rocketseat-education/nlw-journey-go v0.0.0-20240709154252-fff52a5cddc4
+	github.com/wneessen/go-mail v0.4.2
 	go.uber.org/zap v1.27.0
 )
 
