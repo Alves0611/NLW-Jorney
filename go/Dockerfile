@@ -11,7 +11,7 @@ WORKDIR /journey/cmd/journey
 RUN go build -o /journey/bin/journey .
 
 
-FROM alpine:latest
+FROM scratch
 
 WORKDIR /journey
 
