@@ -9,15 +9,10 @@
     "/trips/{tripId}/confirm": {
       "get": {
         "summary": "Confirm a trip and send e-mail invitations.",
-        "tags": [
-          "trips"
-        ],
+        "tags": ["trips"],
         "parameters": [
           {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
+            "schema": { "type": "string", "format": "uuid" },
             "in": "path",
             "name": "tripId",
             "required": true
@@ -28,12 +23,7 @@
             "description": "Default Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "enum": [
-                    "null"
-                  ],
-                  "nullable": true
-                }
+                "schema": { "enum": ["null"], "nullable": true }
               }
             }
           },
@@ -41,9 +31,7 @@
             "description": "Bad request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }
@@ -53,15 +41,10 @@
     "/participants/{participantId}/confirm": {
       "patch": {
         "summary": "Confirms a participant on a trip.",
-        "tags": [
-          "participants"
-        ],
+        "tags": ["participants"],
         "parameters": [
           {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
+            "schema": { "type": "string", "format": "uuid" },
             "in": "path",
             "name": "participantId",
             "required": true
@@ -72,12 +55,7 @@
             "description": "Default Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "enum": [
-                    "null"
-                  ],
-                  "nullable": true
-                }
+                "schema": { "enum": ["null"], "nullable": true }
               }
             }
           },
@@ -85,9 +63,7 @@
             "description": "Bad request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }
@@ -97,9 +73,7 @@
     "/trips/{tripId}/invites": {
       "post": {
         "summary": "Invite someone to the trip.",
-        "tags": [
-          "participants"
-        ],
+        "tags": ["participants"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -112,10 +86,7 @@
         },
         "parameters": [
           {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
+            "schema": { "type": "string", "format": "uuid" },
             "in": "path",
             "name": "tripId",
             "required": true
@@ -126,12 +97,7 @@
             "description": "Default Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "enum": [
-                    "null"
-                  ],
-                  "nullable": true
-                }
+                "schema": { "enum": ["null"], "nullable": true }
               }
             }
           },
@@ -139,9 +105,7 @@
             "description": "Bad request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }
@@ -151,25 +115,18 @@
     "/trips/{tripId}/activities": {
       "post": {
         "summary": "Create a trip activity.",
-        "tags": [
-          "activities"
-        ],
+        "tags": ["activities"],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateActivityRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/CreateActivityRequest" }
             }
           },
           "required": true
         },
         "parameters": [
           {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
+            "schema": { "type": "string", "format": "uuid" },
             "in": "path",
             "name": "tripId",
             "required": true
@@ -190,9 +147,7 @@
             "description": "Bad request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }
@@ -200,16 +155,11 @@
       },
       "get": {
         "summary": "Get a trip activities.",
-        "tags": [
-          "activities"
-        ],
+        "tags": ["activities"],
         "description": "This route will return all the dates between the trip starts_at and ends_at dates, even those without activities.",
         "parameters": [
           {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
+            "schema": { "type": "string", "format": "uuid" },
             "in": "path",
             "name": "tripId",
             "required": true
@@ -230,9 +180,7 @@
             "description": "Bad request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }
@@ -242,25 +190,18 @@
     "/trips/{tripId}/links": {
       "post": {
         "summary": "Create a trip link.",
-        "tags": [
-          "links"
-        ],
+        "tags": ["links"],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateLinkRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/CreateLinkRequest" }
             }
           },
           "required": true
         },
         "parameters": [
           {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
+            "schema": { "type": "string", "format": "uuid" },
             "in": "path",
             "name": "tripId",
             "required": true
@@ -271,9 +212,7 @@
             "description": "Default Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateLinkResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateLinkResponse" }
               }
             }
           },
@@ -281,9 +220,7 @@
             "description": "Bad request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }
@@ -291,15 +228,10 @@
       },
       "get": {
         "summary": "Get a trip links.",
-        "tags": [
-          "links"
-        ],
+        "tags": ["links"],
         "parameters": [
           {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
+            "schema": { "type": "string", "format": "uuid" },
             "in": "path",
             "name": "tripId",
             "required": true
@@ -310,9 +242,7 @@
             "description": "Default Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetLinksResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetLinksResponse" }
               }
             }
           },
@@ -320,9 +250,7 @@
             "description": "Bad request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }
@@ -332,15 +260,11 @@
     "/trips": {
       "post": {
         "summary": "Create a new trip",
-        "tags": [
-          "trips"
-        ],
+        "tags": ["trips"],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateTripRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/CreateTripRequest" }
             }
           },
           "required": true
@@ -350,9 +274,7 @@
             "description": "Default Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateTripResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateTripResponse" }
               }
             }
           },
@@ -360,9 +282,7 @@
             "description": "Bad request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }
@@ -372,15 +292,10 @@
     "/trips/{tripId}": {
       "get": {
         "summary": "Get a trip details.",
-        "tags": [
-          "trips"
-        ],
+        "tags": ["trips"],
         "parameters": [
           {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
+            "schema": { "type": "string", "format": "uuid" },
             "in": "path",
             "name": "tripId",
             "required": true
@@ -401,9 +316,7 @@
             "description": "Bad request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }
@@ -411,25 +324,18 @@
       },
       "put": {
         "summary": "Update a trip.",
-        "tags": [
-          "trips"
-        ],
+        "tags": ["trips"],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTripRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/UpdateTripRequest" }
             }
           },
           "required": true
         },
         "parameters": [
           {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
+            "schema": { "type": "string", "format": "uuid" },
             "in": "path",
             "name": "tripId",
             "required": true
@@ -440,12 +346,7 @@
             "description": "Default Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "enum": [
-                    "null"
-                  ],
-                  "nullable": true
-                }
+                "schema": { "enum": ["null"], "nullable": true }
               }
             }
           },
@@ -453,9 +354,7 @@
             "description": "Bad request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }
@@ -465,15 +364,10 @@
     "/trips/{tripId}/participants": {
       "get": {
         "summary": "Get a trip participants.",
-        "tags": [
-          "participants"
-        ],
+        "tags": ["participants"],
         "parameters": [
           {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
+            "schema": { "type": "string", "format": "uuid" },
             "in": "path",
             "name": "tripId",
             "required": true
@@ -494,9 +388,7 @@
             "description": "Bad request",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }
@@ -508,14 +400,8 @@
     "schemas": {
       "Error": {
         "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "message"
-        ],
+        "properties": { "message": { "type": "string" } },
+        "required": ["message"],
         "additionalProperties": false,
         "description": "Bad request"
       },
@@ -524,12 +410,11 @@
         "properties": {
           "email": {
             "type": "string",
-            "format": "email"
+            "format": "email",
+            "x-go-extra-tags": { "validate": "required,email" }
           }
         },
-        "required": [
-          "email"
-        ],
+        "required": ["email"],
         "additionalProperties": false
       },
       "CreateActivityRequest": {
@@ -537,29 +422,21 @@
         "properties": {
           "occurs_at": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-go-extra-tags": { "validate": "required" }
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "x-go-extra-tags": { "validate": "required" }
           }
         },
-        "required": [
-          "occurs_at",
-          "title"
-        ],
+        "required": ["occurs_at", "title"],
         "additionalProperties": false
       },
       "CreateActivityResponse": {
         "type": "object",
-        "properties": {
-          "activityId": {
-            "type": "string",
-            "format": "uuid"
-          }
-        },
-        "required": [
-          "activityId"
-        ],
+        "properties": { "activityId": { "type": "string", "format": "uuid" } },
+        "required": ["activityId"],
         "additionalProperties": false
       },
       "GetTripActivitiesResponse": {
@@ -572,18 +449,13 @@
             }
           }
         },
-        "required": [
-          "activities"
-        ],
+        "required": ["activities"],
         "additionalProperties": false
       },
       "GetTripActivitiesResponseOuterArray": {
         "type": "object",
         "properties": {
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "date": { "type": "string", "format": "date-time" },
           "activities": {
             "type": "array",
             "items": {
@@ -591,62 +463,39 @@
             }
           }
         },
-        "required": [
-          "date",
-          "activities"
-        ],
+        "required": ["date", "activities"],
         "additionalProperties": false
       },
       "GetTripActivitiesResponseInnerArray": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "title": {
-            "type": "string"
-          },
-          "occurs_at": {
-            "type": "string",
-            "format": "date-time"
-          }
+          "id": { "type": "string", "format": "uuid" },
+          "title": { "type": "string" },
+          "occurs_at": { "type": "string", "format": "date-time" }
         },
-        "required": [
-          "id",
-          "title",
-          "occurs_at"
-        ],
+        "required": ["id", "title", "occurs_at"],
         "additionalProperties": false
       },
       "CreateLinkRequest": {
         "type": "object",
         "properties": {
           "title": {
-            "type": "string"
+            "type": "string",
+            "x-go-extra-tags": { "validate": "required" }
           },
           "url": {
             "type": "string",
-            "format": "uri"
+            "format": "uri",
+            "x-go-extra-tags": { "validate": "required,url" }
           }
         },
-        "required": [
-          "title",
-          "url"
-        ],
+        "required": ["title", "url"],
         "additionalProperties": false
       },
       "CreateLinkResponse": {
         "type": "object",
-        "properties": {
-          "linkId": {
-            "type": "string",
-            "format": "uuid"
-          }
-        },
-        "required": [
-          "linkId"
-        ],
+        "properties": { "linkId": { "type": "string", "format": "uuid" } },
+        "required": ["linkId"],
         "additionalProperties": false
       },
       "GetLinksResponse": {
@@ -654,36 +503,20 @@
         "properties": {
           "links": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GetLinksResponseArray"
-            }
+            "items": { "$ref": "#/components/schemas/GetLinksResponseArray" }
           }
         },
-        "required": [
-          "links"
-        ],
+        "required": ["links"],
         "additionalProperties": false
       },
       "GetLinksResponseArray": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "title": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string",
-            "format": "uri"
-          }
+          "id": { "type": "string", "format": "uuid" },
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
         },
-        "required": [
-          "id",
-          "title",
-          "url"
-        ],
+        "required": ["id", "title", "url"],
         "additionalProperties": false
       },
       "CreateTripRequest": {
@@ -691,29 +524,32 @@
         "properties": {
           "destination": {
             "type": "string",
-            "minLength": 4
+            "minLength": 4,
+            "x-go-extra-tags": { "validate": "required,min=4" }
           },
           "starts_at": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-go-extra-tags": { "validate": "required" }
           },
           "ends_at": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-go-extra-tags": { "validate": "required" }
           },
           "emails_to_invite": {
             "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email"
-            }
+            "x-go-extra-tags": { "validate": "required,dive,email" },
+            "items": { "type": "string", "format": "email" }
           },
           "owner_name": {
-            "type": "string"
+            "type": "string",
+            "x-go-extra-tags": { "validate": "required" }
           },
           "owner_email": {
             "type": "string",
-            "format": "email"
+            "format": "email",
+            "x-go-extra-tags": { "validate": "required,email" }
           }
         },
         "required": [
@@ -728,15 +564,8 @@
       },
       "CreateTripResponse": {
         "type": "object",
-        "properties": {
-          "tripId": {
-            "type": "string",
-            "format": "uuid"
-          }
-        },
-        "required": [
-          "tripId"
-        ],
+        "properties": { "tripId": { "type": "string", "format": "uuid" } },
+        "required": ["tripId"],
         "additionalProperties": false
       },
       "GetTripDetailsResponse": {
@@ -746,33 +575,17 @@
             "$ref": "#/components/schemas/GetTripDetailsResponseTripObj"
           }
         },
-        "required": [
-          "trip"
-        ],
+        "required": ["trip"],
         "additionalProperties": false
       },
       "GetTripDetailsResponseTripObj": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "destination": {
-            "type": "string",
-            "minLength": 4
-          },
-          "starts_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "ends_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "is_confirmed": {
-            "type": "boolean"
-          }
+          "id": { "type": "string", "format": "uuid" },
+          "destination": { "type": "string", "minLength": 4 },
+          "starts_at": { "type": "string", "format": "date-time" },
+          "ends_at": { "type": "string", "format": "date-time" },
+          "is_confirmed": { "type": "boolean" }
         },
         "required": [
           "id",
@@ -788,22 +601,21 @@
         "properties": {
           "destination": {
             "type": "string",
-            "minLength": 4
+            "minLength": 4,
+            "x-go-extra-tags": { "validate": "required,min=4" }
           },
           "starts_at": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-go-extra-tags": { "validate": "required" }
           },
           "ends_at": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-go-extra-tags": { "validate": "required" }
           }
         },
-        "required": [
-          "destination",
-          "starts_at",
-          "ends_at"
-        ],
+        "required": ["destination", "starts_at", "ends_at"],
         "additionalProperties": false
       },
       "GetTripParticipantsResponse": {
@@ -816,35 +628,18 @@
             }
           }
         },
-        "required": [
-          "participants"
-        ],
+        "required": ["participants"],
         "additionalProperties": false
       },
       "GetTripParticipantsResponseArray": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "format": "email"
-          },
-          "is_confirmed": {
-            "type": "boolean"
-          }
+          "id": { "type": "string" },
+          "name": { "type": "string", "nullable": true },
+          "email": { "type": "string", "format": "email" },
+          "is_confirmed": { "type": "boolean" }
         },
-        "required": [
-          "id",
-          "name",
-          "email",
-          "is_confirmed"
-        ],
+        "required": ["id", "name", "email", "is_confirmed"],
         "additionalProperties": false
       }
     }
