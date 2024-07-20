@@ -1,15 +1,19 @@
 package mailpit
 
-import {
+import (
 	"context"
+	"fmt"
+	"time"
 
 	"github.com/google/uuid"
-}
+	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/rocketseat-education/nlw-journey-go/internal/pgstore"
+	"github.com/wneessen/go-mail"
+)
 
 type store interface {
 	GetTrip(context.Context, uuid.UUID) (pgstore.Trip, error)
 }
-
 
 type Mailpit struct {
 	store store
@@ -44,3 +48,15 @@ func (mp Mailpit) SendConfirmTripEmailToTripOwner(trupID uuid.UUID) error {
 		`,
 		trip.OwnerName, trip.Destination, trip.StartsAt.Time.Format(time.DateOnly),
 	))
+
+	client, err := mail.NewClient("mailpit", mail.WithTLSPortPolicy(mail.NoTLS), mail.WithPort(1025))
+	if err != nil {
+		return fmt.Errorf("mailpit: failed create email client SendConfirmTripEmailToTripOwner: %w", err)
+	}
+
+	if err := client.DialAndSend(msg); err != nil {
+		return fmt.Errorf("mailpit: failed send email client SendConfirmTripEmailToTripOwner: %w", err)
+	}
+
+	return nil
+}
