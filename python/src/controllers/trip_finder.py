@@ -1,7 +1,7 @@
 from typing import Dict
 
 
-class TrypFinder:
+class TripFinder:
     def __init__(self, trips_repository) -> None:
         self.__trips_repository = trips_repository
 
