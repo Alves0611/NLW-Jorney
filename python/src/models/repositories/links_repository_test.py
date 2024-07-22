@@ -21,3 +21,12 @@ def test_registry_link():
     }
 
     link_repository.registry_link(link_infos)
+
+def test_find_links_from_trip(): 
+    conn = db_connection_handler.get_connection()
+    link_repository = LinksRepository(conn)
+
+    response = link_repository.find_links_from_trip(trip_id)
+    
+    assert isinstance(response, list)
+    assert isinstance(response[0], tuple)
