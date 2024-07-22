@@ -27,6 +27,6 @@ def find_trip(tripId):
     trips_repository = TripsRepository(conn)
     controller = TripFinder(trips_repository)
 
-    response = controller.find_trip_details
+    response = controller.find_trip_details(tripId)
 
     return jsonify(response["body"]), response["status_code"]
